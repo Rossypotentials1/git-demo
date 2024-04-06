@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-deploy:
-    name: CI/CD Pipeline
+    name: CI/CD Docker Pipeline
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
