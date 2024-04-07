@@ -47,4 +47,4 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: rossypotentials/my_spring:latest
+          tags: rossypotentials/git-demo:latest
