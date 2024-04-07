@@ -2,8 +2,8 @@ FROM openjdk:17-jdk
 
 WORKDIR /app
 
-COPY target/mySpring-1.0.0.jar mySpring.jar
+COPY target/mySpring-0.0.1-SNAPSHOT.jar ./
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "mySpring.jar"]
+ENTRYPOINT ["java", "-jar", "mySpring-0.0.1-SNAPSHOT.jar"]
