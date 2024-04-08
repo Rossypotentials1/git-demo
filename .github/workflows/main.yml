@@ -26,13 +26,74 @@ jobs:
       - name: Package and build
         run: mvn clean package --file pom.xml
 
-      - name: Build Docker Image
-        uses: docker/build-push-action@v2
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u rossypotentials --password-stdin
+
+      - name: Build and push Docker image in Dockerhub
+        run: |
+          docker build -t rossypotentials/my_spring:latest .
+          docker push rossypotentials/my_spring:latest
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v5
         with:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: rossypotentials/git-demo:latest
+          tags: rossypotentials/my_spring:latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            #name: Continuous Integration and Continuous Deployment
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#      - master
+#
+#jobs:
+#  build-deploy:
+#    name: CI/CD Docker Pipeline
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Setup JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'corretto'
+#          java-version: 17
+#
+#      - name: Unit Testing
+#        run: mvn -B test --file pom.xml
+#
+#      - name: Package and build
+#        run: mvn clean package --file pom.xml
+#
+#      - name: Build Docker Image
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: .
+#          dockerfile: Dockerfile
+#          push: true
+#          tags: rossypotentials/git-demo:latest
             #docker push
 
 #      - name: Login to Docker Hub
